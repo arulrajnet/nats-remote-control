@@ -8,6 +8,21 @@ services:
     volumes:
       - nats_data:/data
 
+  nats-cli:
+    build:
+      context: ./nats-cli
+      dockerfile: Dockerfile
+      args:
+        TTYD_VERSION: latest
+        NATS_CLI_VERSION: 0.3.0
+    image: arulrajnet/nats-cli:0.3.0
+    environment:
+      NATS_URL: nats:4222
+    depends_on:
+      - nats
+    ports:
+      - "7681:7681"
+
   nats-dashboard:
     image: mdawar/nats-dashboard:${NATS_DASHBOARD_VERSION}
     ports:
