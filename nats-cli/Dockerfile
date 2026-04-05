@@ -32,6 +32,7 @@ RUN ARCH=$(uname -m) && \
 FROM alpine:3.19 AS final
 
 # Install rlwrap and bash
+# hadolint ignore=DL3018
 RUN apk add --no-cache rlwrap bash
 
 # Copy binaries from downloader stage
