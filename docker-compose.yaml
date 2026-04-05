@@ -15,7 +15,7 @@ services:
       args:
         TTYD_VERSION: latest
         NATS_CLI_VERSION: 0.3.0
-    image: arulrajnet/nats-cli:0.3.0
+    image: arulrajnet/nats-cli-eval:0.3.0
     environment:
       NATS_URL: nats://nats:4222
     depends_on:

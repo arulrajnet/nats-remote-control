@@ -74,16 +74,16 @@ jobs:
             version="${release_tag#v}"
 
             tags="${{ env.IMAGE_NAME }}:latest
-${{ env.IMAGE_NAME }}:${release_tag}
-${{ env.IMAGE_NAME }}:${version}"
+            ${{ env.IMAGE_NAME }}:${release_tag}
+            ${{ env.IMAGE_NAME }}:${version}"
 
             # Add major.minor and major tags for stable semantic versions.
             if [[ "${version}" =~ ^([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
               major="${BASH_REMATCH[1]}"
               minor="${BASH_REMATCH[2]}"
               tags="${tags}
-${{ env.IMAGE_NAME }}:${major}.${minor}
-${{ env.IMAGE_NAME }}:${major}"
+              ${{ env.IMAGE_NAME }}:${major}.${minor}
+              ${{ env.IMAGE_NAME }}:${major}"
             fi
           else
             tags="${{ env.IMAGE_NAME }}:sha-${short_sha}"
