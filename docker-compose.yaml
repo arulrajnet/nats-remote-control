@@ -2,8 +2,8 @@ services:
   nats:
     image: nats:${NATS_VERSION}
     ports:
-      - "4222"
-      - "8222"
+      - 4222:4222
+      - 8222:8222
     command: ["-n", "my-server", "-js", "-sd", "/data", "-p", "4222", "-m", "8222"]
     volumes:
       - nats_data:/data
@@ -17,11 +17,13 @@ services:
         NATS_CLI_VERSION: 0.3.0
     image: arulrajnet/nats-cli:0.3.0
     environment:
-      NATS_URL: nats:4222
+      NATS_URL: nats://nats:4222
     depends_on:
       - nats
     ports:
       - "7681:7681"
+    volumes:
+      - nats_cli_data:/data
 
   nats-dashboard:
     image: mdawar/nats-dashboard:${NATS_DASHBOARD_VERSION}
@@ -46,3 +48,4 @@ configs:
 
 volumes:
   nats_data:
+  nats_cli_data:
